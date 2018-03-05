@@ -1,6 +1,8 @@
-package beans;
+package entities;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -9,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,10 +21,11 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@Table(name="port")
-//@JsonIdentityInfo(scope=Port.class, generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-public class Port implements Serializable {
+@Table(name="country")
+//@JsonIdentityInfo(scope=Country.class, generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
+public class Country implements Serializable {
 
+	
 	
 	
 	@Id
@@ -29,16 +33,13 @@ public class Port implements Serializable {
 	@Type(type="org.hibernate.type.PostgresUUIDType")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
-	
 	@Column(name="name")
 	private String name;
-	
-	@Column(name="longitude")
-	private double longitude;
+	@Column(name="icon")
+	private byte[] icon;
 
-	@Column(name="latitude")
-	private double latitude;
-	
+	@OneToMany(mappedBy = "country", /*cascade = CascadeType.ALL , */ fetch = FetchType.LAZY)
+	private Set<Vessel> vessels;
 	
 	
 	public UUID getId() {
@@ -53,19 +54,18 @@ public class Port implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public double getLongitude() {
-		return longitude;
+	public byte[] getIcon() {
+		return icon;
 	}
-	public void setLongitude(double longitude) {
-		this.longitude = longitude;
+	public void setIcon(byte[] icon) {
+		this.icon = icon;
 	}
-	public double getLatitude() {
-		return latitude;
+	public Set<Vessel> getVessels() {
+		return vessels;
 	}
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
+	public void setVessels(Set<Vessel> vessels) {
+		this.vessels = vessels;
 	}
-	
 	
 	
 	

@@ -7,10 +7,10 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonWriter;
 
-import beans.Country;
-import beans.Port;
-import beans.Vessel;
-import beans.Visits;
+import entities.Country;
+import entities.Port;
+import entities.Vessel;
+import entities.Visits;
 import repositories.CountryRepository;
 import repositories.PortRepository;
 import repositories.VesselRepository;
@@ -98,7 +98,7 @@ public class MainController {
 		return ResponseEntity.status(HttpStatus.OK).body("Did not find any country with id: "+id);
 	}
 	
-//	@Transactional
+	
 	@PostMapping("/country/update")
 	public ResponseEntity<Object> saveCountryFlag(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("icon") MultipartFile file) {
 		try{
@@ -116,7 +116,6 @@ public class MainController {
 	
 	
 	
-//	@Transactional
 	@RequestMapping(method = RequestMethod.POST, value = { "/country/add" }, consumes = "application/json", produces="application/json")
 	public @ResponseBody ResponseEntity<Object> createCountry(@RequestBody Country country) {
 		try{
@@ -128,7 +127,7 @@ public class MainController {
 		return ResponseEntity.status(HttpStatus.CREATED).body("Created country with id: "+country.getId());
 	}
 	
-//	@Transactional
+
 	@RequestMapping(method = RequestMethod.POST, value = { "/country/delete" }, consumes = "application/json", produces="application/json")
 	public @ResponseBody ResponseEntity<Object> deleteCountry(@RequestBody Country country) {
 		try{
@@ -162,8 +161,8 @@ public class MainController {
     }	
 	
 	
-//	@Transactional
-	@PostMapping("/vessel/update")
+
+    @PostMapping("/vessel/update")
 	public ResponseEntity<Object> saveVesselImage(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("image") MultipartFile image, @RequestParam("countryid") String countryid) {
 		try{
 			Vessel vessel = new Vessel();
@@ -186,8 +185,8 @@ public class MainController {
 	}
 	
 	
-//	@Transactional
-	@RequestMapping(method = RequestMethod.POST, value = { "/vessel/add" }, consumes = "application/json", produces="application/json")
+
+    @RequestMapping(method = RequestMethod.POST, value = { "/vessel/add" }, consumes = "application/json", produces="application/json")
 	public @ResponseBody ResponseEntity<Object> createVessel(@RequestBody Vessel vessel) {
 		try{
 			vessel = vesselRepository.save(vessel);
@@ -198,8 +197,8 @@ public class MainController {
 		return ResponseEntity.status(HttpStatus.CREATED).body("Created vessel with id: "+vessel.getId());
 	}
 	
-//	@Transactional
-	@RequestMapping(method = RequestMethod.POST, value = { "/vessel/delete" }, consumes = "application/json", produces="application/json")
+
+    @RequestMapping(method = RequestMethod.POST, value = { "/vessel/delete" }, consumes = "application/json", produces="application/json")
 	public @ResponseBody ResponseEntity<Object> deleteVessel(@RequestBody Vessel vessel) {
 		try{
 			vesselRepository.delete(vessel);
@@ -226,7 +225,7 @@ public class MainController {
     }
 	
 	
-//	@Transactional
+
 	@RequestMapping(method = RequestMethod.POST, value = { "/port/add" }, consumes = "application/json", produces="application/json")
 	public @ResponseBody ResponseEntity<Object> createPort(@RequestBody Port port) {
 		try{
@@ -238,7 +237,7 @@ public class MainController {
 		return ResponseEntity.status(HttpStatus.CREATED).body("Created port with id: "+port.getId());
 	}
 	
-//	@Transactional
+
 	@RequestMapping(method = RequestMethod.POST, value = { "/port/delete" }, consumes = "application/json", produces="application/json")
 	public @ResponseBody ResponseEntity<Object> deletePort(@RequestBody Port port) {
 		try{
@@ -268,7 +267,6 @@ public class MainController {
 
 	
 	
-	//@PostMapping("/visit/add")
 	@RequestMapping(method = RequestMethod.POST, value = { "/visit/add" },consumes = "application/json", produces="plain/text")
     public @ResponseBody ResponseEntity<Object> addVisit(
     		//@RequestParam("vesselID") String vesselID, @RequestParam("portID") String portID, @RequestParam("visittime") Long visittime
@@ -309,53 +307,21 @@ public class MainController {
 	
 	
 	
-	
-	
-	
-	
-	@RequestMapping("/registration")
-    public boolean registration() {
-    	return true;
-    }
+
 	
 	
 	@RequestMapping("/ping")
-	//@ResponseBody
     public String ping() {
     	return "pong: "+UUID.randomUUID().toString();
     }
 	
 	
 	@RequestMapping("/now")
-	//@ResponseBody
     public Date now() {
     	return new Date();
     }
 	
 	
-//    @RequestMapping("/addresses/count")
-//    public String list() {
-//    	
-//    	return "Found: "+addressRepository.count() +" addresses";
-//    	
-//    }
-//    
-//    @RequestMapping("/addresses/create")
-//    @ResponseBody
-//    public Address create() {
-//    	
-//    	Address a = new Address("adsfasdf", "dfgsfgsdfg", "ghsfh", "12345");
-//    	return addressRepository.save(a);
-//    	
-//    }
-//    
-//    
-//    
-//    @RequestMapping(value= {"/addresses/byzipcode"}, method={RequestMethod.POST,RequestMethod.GET})
-//    @ResponseBody
-//    public List<Address> findByZipcode(@RequestParam("zipcode") String zipcode) {
-//    	return addressRepository.findByZipcode(zipcode);
-//    }
     
     
 }

@@ -18,6 +18,7 @@ import java.util.stream.IntStream;
 import org.junit.Rule;
 
 import controllers.MainController;
+import entities.Country;
 import repositories.CountryRepository;
 
 import org.junit.Test;
@@ -39,8 +40,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
-
-import beans.Country;
 
 
 

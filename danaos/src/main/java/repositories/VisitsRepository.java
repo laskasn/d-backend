@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import beans.Vessel;
-import beans.Visits;
+import entities.Vessel;
+import entities.Visits;
 
 
 @Repository("visitsRepository")

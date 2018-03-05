@@ -20,10 +20,12 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
@@ -32,10 +34,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @EnableTransactionManagement
-@EntityScan(value = "beans")
-@EnableJpaRepositories(basePackages = {"dao", "app", "beans", "repositories"} )
-@SpringBootApplication(scanBasePackages={"beans", "app", "dao", "services", "security", "controllers", "services"})
+@EntityScan(value = "entities")
+@EnableJpaRepositories(basePackages = {"dao", "app", "entities", "repositories", "services"} )
+@SpringBootApplication(scanBasePackages={"entities", "app", "dao", "services", "security", "security.config", "security.validators", "controllers"})
 //@EnableConfigurationProperties(SecurityProperties.class)
+//@ComponentScan ("security.validators")
 public class Application extends SpringBootServletInitializer{
 	
 	

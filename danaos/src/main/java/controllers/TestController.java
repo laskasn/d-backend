@@ -39,8 +39,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import beans.Country;
-import beans.Vessel;
+import entities.Country;
+import entities.Vessel;
 import repositories.CountryRepository;
 import repositories.PortRepository;
 import repositories.VesselRepository;
@@ -152,7 +152,7 @@ public class TestController {
 		List<File> flags = Arrays.asList(flagsFolder.listFiles());
 		
 		
-		flags.parallelStream().forEach(flag -> {
+		flags.stream().forEach(flag -> {
 			String splits[] = flag.getName().replace(".gif", "").split("_");
 			//capitalize first letter 
 			String flagname = "";
