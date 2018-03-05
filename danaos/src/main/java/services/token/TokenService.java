@@ -17,7 +17,7 @@ import com.google.common.cache.LoadingCache;
 @Scope("singleton")
 public class TokenService {
 	
-	private static Integer EXPIRE_AFTER_ACCESS_SEC = 120000;  
+	private static Integer EXPIRE_AFTER_ACCESS_SEC = 120;  
 	
 	Cache<Object, Object> cache;
 	
