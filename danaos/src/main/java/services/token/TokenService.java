@@ -4,6 +4,7 @@ import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,7 @@ import com.google.common.cache.LoadingCache;
 @Scope("singleton")
 public class TokenService {
 	
+	//@Value("${tokenservice.session.timeoutsecs}")
 	private static Integer EXPIRE_AFTER_ACCESS_SEC = 120;  
 	
 	Cache<Object, Object> cache;

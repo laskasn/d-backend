@@ -51,7 +51,8 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/app/login","/app/logout").permitAll()
 			
 
-			.antMatchers("/port/delete","/port/add",
+			.antMatchers("/users/list",
+					"/port/delete","/port/add",
 		    		"/vessel/delete","/vessel/add","/vessel/update", "/vessel/list",
 		    		"/country/delete","/country/add","/country/update","/country/get","/country/list").access("hasRole('ROLE_ADMIN')")//.hasAnyAuthority("ROLE_ADMIN")
 			

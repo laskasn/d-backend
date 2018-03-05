@@ -9,10 +9,12 @@ import com.google.gson.stream.JsonWriter;
 
 import entities.Country;
 import entities.Port;
+import entities.User;
 import entities.Vessel;
 import entities.Visits;
 import repositories.CountryRepository;
 import repositories.PortRepository;
+import repositories.UserRepository;
 import repositories.VesselRepository;
 import repositories.VisitsRepository;
 
@@ -51,6 +53,7 @@ public class MainController {
 	private VesselRepository vesselRepository;
 	private PortRepository portRepository;
 	private VisitsRepository visitsRepository;
+	private UserRepository userRepository;
 	
 
 	@Autowired
@@ -72,6 +75,12 @@ public class MainController {
 	public void setVisitsRepository(VisitsRepository visitsRepository) {
 		this.visitsRepository = visitsRepository;
 	}
+	
+	@Autowired
+	public void setUserRepository(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+	
 	
 	
 	@RequestMapping("/country/list")
@@ -299,6 +308,11 @@ public class MainController {
 	
 	
 	
+	@RequestMapping("/users/list")
+	@ResponseBody
+    public List<User> listUsers() {
+		return userRepository.findAll();
+    }
 	
 	
 	

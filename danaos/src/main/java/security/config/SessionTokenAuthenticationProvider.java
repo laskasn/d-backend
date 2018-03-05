@@ -38,6 +38,8 @@ public Authentication authenticate(Authentication authentication) throws Authent
 	if("%%%custom-token%%%".equals(type)) {
 		Authentication storedAuthentication = tokenService.retrieve(token);
 		
+		
+		
 		if(storedAuthentication != null) {
 			System.out.println("Authenticated by an existing token "+token);
 			
@@ -45,8 +47,13 @@ public Authentication authenticate(Authentication authentication) throws Authent
 			System.out.println("FROM SESSION ROLES: "+roles);
 			
 			return storedAuthentication;
-//			return new UsernamePasswordAuthenticationToken( authentication.getPrincipal(), authentication.getCredentials(), authentication.getAuthorities());
+			
 		}
+		else { //session expired
+			
+		}
+		
+		
 	}
 	return null;
 }
