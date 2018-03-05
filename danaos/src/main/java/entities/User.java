@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 
 @Entity
-@Table(name="\"user\"")
+@Table(name="appuser")
 @Scope("session")
 public  class User implements UserDetails {
 	
